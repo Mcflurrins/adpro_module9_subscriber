@@ -9,3 +9,6 @@ In "localhost:5672", "localhost" is the hostname (meaning the message broker is 
 
 ![image](https://github.com/user-attachments/assets/b0d7641f-dd51-4458-8879-845d724f8f77)
 I got 30 queues because I ran `cargo run` at least 6 times in the publisher folder. Since the subscriber is slow now, it can't process messages as fast as they are sent from the publisher, so unprocessed requests go into the queue first. 
+
+![image](https://github.com/user-attachments/assets/5d80ac6c-4ca8-495d-9678-32fcdae4ec87)
+After running the same amount of `cargo run` in publisher, my queue that was originally 30 got cut down to 15. This is because RabbitMQ distributes the messages among the available subscribers, and each message is removed from the queue once it is delivered to any one subscriber.
